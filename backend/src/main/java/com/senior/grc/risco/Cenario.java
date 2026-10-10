@@ -20,7 +20,9 @@ public record Cenario(String codigo, String nome, NivelRisco nivel, Escopo escop
         /** Agrupando por {@code chave}, a evidencia mais recente de algum grupo esta VENCIDA (validoAte < agora). */
         VENCIDA,
         /** Agrupando por {@code chave}, a mais recente de algum grupo vence em ate {@code valor} dias. */
-        VENCE_EM_DIAS
+        VENCE_EM_DIAS,
+        /** Agrupando por {@code chave}, a evidencia mais recente de algum grupo NAO foi conferida. */
+        NAO_CONFERIDA
     }
 
     /**
@@ -44,6 +46,10 @@ public record Cenario(String codigo, String nome, NivelRisco nivel, Escopo escop
 
         public static Condicao venceEmDias(String tipo, String chaveGrupo, int dias) {
             return new Condicao(tipo, Modo.VENCE_EM_DIAS, chaveGrupo, String.valueOf(dias));
+        }
+
+        public static Condicao naoConferida(String tipo, String chaveGrupo) {
+            return new Condicao(tipo, Modo.NAO_CONFERIDA, chaveGrupo, null);
         }
     }
 }

@@ -169,7 +169,10 @@ Conectar um cliente MCP (ex.: Claude) ao servidor da demo → perguntar "por que
   temporário (expira), só leitura e auditado (trilha). `DossieService.gerar` exige acesso válido,
   é PSEUDONIMIZADO por padrão (nunca CPF) e carrega a verificação de integridade da trilha + hash do
   dossiê. 3 testes (R9). (2026-10-10)
-- [ ] 11. OCR mock e conferência
+- [x] **11. OCR mock e conferência** — `MockOcrAdapter` (uma leitura = uma evidência, com hash do
+  documento e versão do motor; campo duvidoso → baixa confiança → não conferida). Cenário
+  `DOC_TERCEIRO_NAO_CONFERIDO` (não reduz risco até conferência). `ConferenciaService` lista
+  pendentes e confere → recalcula o risco. 2 testes (R4). (2026-10-10)
 - [ ] 12. Sara mock (triagem e explicação)
 - [ ] 13. Servidor MCP
 - [ ] 14. Roteiros R1 a R12 automatizados como testes de ponta a ponta

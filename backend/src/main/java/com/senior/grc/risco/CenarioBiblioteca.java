@@ -32,7 +32,13 @@ public class CenarioBiblioteca {
             // 4. Terceiro com documentacao vencida.
             new Cenario("DOC_TERCEIRO_VENCIDO", "Terceiro com documentacao vencida",
                     NivelRisco.ALTO, Cenario.Escopo.EMPRESA,
-                    List.of(Condicao.vencida("DOCUMENTO_TERCEIRO", "documento")))
+                    List.of(Condicao.vencida("DOCUMENTO_TERCEIRO", "documento"))),
+
+            // 5. Documento de terceiro lido por OCR com baixa confianca, ainda nao conferido (R4):
+            // nao reduz o risco ate a conferencia humana.
+            new Cenario("DOC_TERCEIRO_NAO_CONFERIDO", "Documento de terceiro pendente de conferencia",
+                    NivelRisco.ALTO, Cenario.Escopo.EMPRESA,
+                    List.of(Condicao.naoConferida("DOCUMENTO_TERCEIRO", "documento")))
     );
 
     public List<Cenario> todos() {

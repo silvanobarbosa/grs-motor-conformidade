@@ -82,7 +82,7 @@ public class EvidenciaRegistro {
         this.conferida = conferida;
     }
 
-    void conferir() {
+    public void conferir() {
         this.conferida = true;
     }
 

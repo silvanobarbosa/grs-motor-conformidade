@@ -59,7 +59,8 @@ public class RiscoService {
     @Transactional
     public AvaliacaoRisco reavaliarEmpresa(String empresaCodigo) {
         String tenant = TenantContext.obrigatorio();
-        List<EvidenciaRegistro> evs = evidencias.findByTenantIdAndSistemaOrigem(tenant, "TERCEIROS").stream()
+        // Evidencia de terceiro pode vir de varias fontes (TERCEIROS, OCR...): filtra pelo atributo empresa.
+        List<EvidenciaRegistro> evs = evidencias.findByTenantId(tenant).stream()
                 .filter(e -> empresaCodigo.equals(e.atributo("empresa")))
                 .toList();
         return avaliar(tenant, empresaCodigo, Cenario.Escopo.EMPRESA, new EstadoDeEvidencia(evs, relogio.agora()));
@@ -74,7 +75,7 @@ public class RiscoService {
             reavaliarPessoa(p.getPseudonimo());
             n++;
         }
-        for (String empresa : evidencias.findByTenantIdAndSistemaOrigem(tenant, "TERCEIROS").stream()
+        for (String empresa : evidencias.findByTenantId(tenant).stream()
                 .map(e -> e.atributo("empresa")).filter(java.util.Objects::nonNull).distinct().toList()) {
             reavaliarEmpresa(empresa);
             n++;

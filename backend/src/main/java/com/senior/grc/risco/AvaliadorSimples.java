@@ -81,6 +81,16 @@ public class AvaliadorSimples implements RuleEnginePort {
                 }
                 return null;
             }
+            case NAO_CONFERIDA -> {
+                for (EvidenciaRegistro e : estado.ultimasPorGrupo(c.tipo(), c.chave()).values()) {
+                    if (!e.isConferida()) {
+                        partes.add(c.tipo() + " " + c.chave() + "=" + e.atributo(c.chave())
+                                + " NAO CONFERIDO (fonte " + e.getSistemaOrigem() + ", baixa confianca)");
+                        return e;
+                    }
+                }
+                return null;
+            }
             default -> {
                 return null;
             }

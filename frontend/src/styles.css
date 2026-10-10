@@ -1,0 +1,38 @@
+/* Design System Senior: Public Sans, verde institucional, tokens-only, WCAG AA.
+   Tema base do PrimeNG = lara-light-teal (verde-azulado proximo do verde Senior). */
+@import "primeng/resources/themes/lara-light-teal/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap");
+@import "./senior-design-tokens.css";
+
+:root {
+  --grc-accent: var(--color-green-institucional);
+  --grc-accent-escuro: var(--color-green-escuro);
+  --grc-texto: var(--color-cinza-900, #3B3D3D);
+  --grc-texto-fraco: var(--color-cinza-600, #77736E);
+  --grc-borda: var(--color-cinza-300, #D4D4D4);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Public Sans", sans-serif;
+  background: var(--color-bg-cinza-azulado);
+  color: var(--grc-texto);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* PrimeNG usa Lara por padrao (Inter); sobrescreve para Public Sans (fonte unica do DS). */
+.p-component, .p-component * {
+  font-family: "Public Sans", sans-serif !important;
+}
+
+:focus-visible {
+  outline: 2px solid var(--grc-accent);
+  outline-offset: 2px;
+}
+
+a { color: var(--grc-accent); }

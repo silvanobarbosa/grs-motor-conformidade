@@ -1,0 +1,204 @@
+/* ==========================================================================
+   Design System Senior — Tokens CSS
+   Fonte: https://brandcenter.senior.com.br/design-system/ (extraído 2026-07-13)
+   Regra: NUNCA usar valor fixo no código. Sempre referenciar var(--token).
+   ========================================================================== */
+
+:root {
+  /* ---------- Cores principais ---------- */
+  --color-green-institucional: #00968C;
+  --color-green-medio: #00AF9B;
+  --color-green-claro: #2AC4AA;
+
+  /* ---------- Cores secundárias ---------- */
+  --color-laranja: #EF8833;
+  --color-amarelo: #FFC511;
+  --color-roxo: #844EC3;
+  --color-pink: #FF0069;
+  --color-verde-neon: #12F7D1;
+  --color-branco: #FFFFFF;
+
+  /* ---------- Apoio / Texto ---------- */
+  --color-green-escuro: #086B6B;
+  --color-azul-escuro: #33466C;
+  --color-azul-claro: #BDC6E3;
+  --color-azul-medio: #8EA0C5;
+
+  /* ---------- Fundo ---------- */
+  --color-bg-cinza-azulado: #F6F9FE;
+  --color-bg-branco: #FFFFFF;
+
+  /* ---------- Escala de cinza ---------- */
+  --color-cinza-900: #3B3D3D;
+  --color-cinza-600: #77736E;
+  --color-cinza-400: #9C9C9C;
+  --color-cinza-300: #D4D4D4;
+  --color-cinza-100: #F2F2F2;
+
+  /* ---------- Transparência 50% ---------- */
+  --color-green-50: rgba(0, 150, 140, 0.5);   /* #00968C @ 50% */
+  --color-azul-escuro-50: rgba(51, 70, 108, 0.5); /* #33466C @ 50% */
+  --color-branco-50: rgba(255, 255, 255, 0.5);
+
+  /* ---------- Degradê oficial ---------- */
+  --gradient-verde-senior: linear-gradient(167deg, #00AF9C 0%, #12F7D1 100%);
+
+  /* ---------- Tipografia ---------- */
+  --font-family-base: "Public Sans", sans-serif;
+
+  /* Desktop (>=1024px) — size / line-height */
+  --font-display-large: 65px;   --lh-display-large: 76px;   --ls-display-large: -0.25px;
+  --font-display-medium: 45px;  --lh-display-medium: 52px;  --ls-display-medium: 0;
+  --font-display-small: 36px;   --lh-display-small: 42px;   --ls-display-small: 0;
+  --font-headline-large: 32px;  --lh-headline-large: 40px;
+  --font-headline-medium: 28px; --lh-headline-medium: 36px;
+  --font-headline-small: 24px;  --lh-headline-small: 28px;
+  --font-title-large: 22px;     --lh-title-large: 28px;
+  --font-title-medium: 16px;    --lh-title-medium: 25px;    --ls-title-medium: 0.15px;
+  --font-title-small: 14px;     --lh-title-small: 20px;     --ls-title-small: 0.1px;
+  --font-label-large: 14px;     --lh-label-large: 20px;     --ls-label-large: 0.1px;
+  --font-label-medium: 12px;    --lh-label-medium: 16px;    --ls-label-medium: 0.5px;
+  --font-label-small: 11px;     --lh-label-small: 16px;     --ls-label-small: 0.5px;
+  --font-body-large: 16px;      --lh-body-large: 24px;      --ls-body-large: 0.5px;
+  --font-body-medium: 14px;     --lh-body-medium: 20px;     --ls-body-medium: 0.25px;
+  --font-body-small: 12px;      --lh-body-small: 16px;      --ls-body-small: 0.4px;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* ---------- Sombras ---------- */
+  --shadow-100: 0px 1px 2px rgba(0,0,0,0.3);
+  --shadow-200: 0px 2px 6px 2px rgba(0,0,0,0.15);
+  --shadow-400: 0px 4px 8px 3px rgba(0,0,0,0.15);
+  --shadow-600: 0px 6px 10px 4px rgba(0,0,0,0.15);
+  --shadow-800: 0px 8px 12px 6px rgba(0,0,0,0.15);
+  --shadow-1000: 10px 10px 60px 6px rgba(0,0,0,0.25);
+  --shadow-elevation-8: 10px 10px 20px 0px rgba(51,70,108,0.25);
+
+  /* ---------- Grid & Layout ---------- */
+  --grid-max-width: 1140px;
+  --grid-columns-desktop: 8;
+  --grid-column-width-desktop: 121px;
+  --grid-gutter-desktop: 25px;
+  --grid-columns-mobile: 4;
+  --grid-column-width-mobile: 70px;
+  --grid-gutter-mobile: 16px;
+  --container-padding-mobile: 26px;
+
+  /* ---------- Espaçamentos ---------- */
+  --spacing-widget: 100px;      /* topo/base de widgets e seções */
+  --spacing-block: 50px;        /* entre texto e imagem, bordas de containers */
+  --spacing-inline: 25px;       /* entre título e texto de apoio */
+
+  /* ---------- Radius padrão observado ---------- */
+  --radius-sm: 5px;
+  --radius-md: 10px;
+
+  /* ======================================================================
+     COMPONENTES
+     ====================================================================== */
+
+  /* Hero Banner Institucional */
+  --hero-banner-width: 100%;
+  --hero-banner-height: 750px;
+  --hero-banner-base-width: 1875px;
+  --hero-headline-size: 42px;
+  --hero-subtitle-size: 20px;
+  --hero-card-text-size: 12px;
+  --hero-card-width: 175px;
+  --hero-card-height: 55px;
+  --hero-card-border-radius: 10px;
+  --hero-card-border: 1px solid #75FABD;
+  --hero-card-text-color: #FFFFFF;
+  --hero-card-hover-bg: #144939;
+  --hero-card-padding-horizontal: 20px;
+  --hero-card-font-size: 12px;
+  --hero-card-font-weight: 400;
+  --hero-modal-width: 325px;
+  --hero-modal-height: 435.255px;
+  --hero-modal-border-radius: 10px;
+  --hero-modal-bg: #FFFFFF;
+  --hero-modal-shadow: 30px 30px 60px rgba(0,0,0,0.25);
+  --hero-modal-padding: 40px;
+  --hero-modal-title-size: 28px;
+  --hero-modal-title-color: #00AF9B;
+  --hero-modal-description-size: 16px;
+  --hero-modal-description-color: #33466C;
+  --hero-modal-cta-secondary-size: 16px;
+  --hero-modal-cta-secondary-color: #33466C;
+
+  /* Carrossel de Logos */
+  --carousel-title-font-size: 28px;
+  --carousel-title-font-weight: 800;
+  --carousel-title-line-height: 120%;
+  --carousel-title-color: #00AF9B;
+  --carousel-description-font-size: 16px;
+  --carousel-description-font-weight: 400;
+  --carousel-description-line-height: 150%;
+  --carousel-description-color: #33466C;
+  --carousel-subtitle-font-size: 20px;
+  --carousel-subtitle-font-weight: 800;
+  --carousel-subtitle-line-height: 150%;
+  --carousel-subtitle-color: #00AF9B;
+  --carousel-arrow-width: 28px;
+  --carousel-arrow-height: 28px;
+  --carousel-arrow-asset: url("/src/assets/carousel-arrow.svg");
+  --carousel-item-width: 100%;
+  --carousel-item-height: 115px;
+  --carousel-item-border-radius: 10px;
+  --carousel-item-border: 1px solid #D3D3D3;
+  --carousel-item-background: #FFFFFF;
+  --carousel-item-padding: 20px;
+  --carousel-dot-inactive-size: 8px;
+  --carousel-dot-inactive-color: #C4CCD8;
+  --carousel-dot-active-width: 24px;
+  --carousel-dot-active-height: 8px;
+  --carousel-dot-active-background: #BDC6E3;
+  --carousel-dot-progress-color: #33466C;
+  --carousel-dot-progress-duration: 3s;
+  --carousel-cta-background: #EF8833;
+
+  /* Botões — cores por variante/estado */
+  --btn-filled-bg: #EF8833;         --btn-filled-bg-hover: #B95E00;
+  --btn-filled-text: #FFFFFF;       --btn-filled-disabled-bg: #BDC6E3;  --btn-filled-disabled-text: #8EA0C5;
+  --btn-outline-border: #12F7D1;    --btn-outline-hover-bg: rgba(18,247,209,0.25);
+  --btn-outline-text: #FFFFFF;      --btn-outline-disabled-border: #BDC6E3; --btn-outline-disabled-text: #8EA0C5;
+  --btn-teal-bg: #12F7D1;           --btn-teal-bg-hover: #00AF9C;        --btn-teal-text: #33466C;
+  --btn-teal-disabled-border: #8EA0C5; --btn-teal-disabled-text: #8EA0C5;
+  --btn-text-color: #FFFFFF;        --btn-text-hover: #12F7D1;          --btn-text-disabled: #8EA0C5;
+
+  /* Botão CTA Conversão */
+  --btn-cta-bg: #EF8833;
+  --btn-cta-bg-hover: #AE6229;
+  --btn-cta-text: #FFFFFF;
+  --btn-cta-font-size: 16px;
+  --btn-cta-font-weight: 700;
+  --btn-cta-gap: 8px;
+  --btn-cta-border-radius: 10px;
+  --btn-cta-shadow: none;
+  --btn-cta-width: 270px;
+  --btn-cta-height: 50px;
+  --btn-cta-icon-size: 16px;
+
+  /* Botão Blog */
+  --btn-blog-bg: #EF8833;
+  --btn-blog-bg-hover: #AE6229;
+  --btn-blog-text: #FFFFFF;
+  --btn-blog-font-size: 16px;
+  --btn-blog-font-weight: 800;
+  --btn-blog-border-radius: 10px;
+  --btn-blog-shadow: none;
+  --btn-blog-width: 218px;
+  --btn-blog-height: 40px;
+}
+
+/* ==========================================================================
+   Tamanhos de botão (compartilhados entre variantes)
+   ========================================================================== */
+.btn-giant  { width: 345px; height: 60px; border-radius: 10px; font-size: 18px; }
+.btn-large  { width: 276px; height: 48px; border-radius: 8px;  font-size: 16px; }
+.btn-medium { width: 230px; height: 40px; border-radius: 5px;  font-size: 14px; }
+.btn-small  { width: 184px; height: 32px; border-radius: 5px;  font-size: 13px; }
+.btn-tiny   { width: 138px; height: 24px; border-radius: 3px;  font-size: 11px; }

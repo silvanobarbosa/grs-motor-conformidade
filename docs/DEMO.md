@@ -182,4 +182,11 @@ Conectar um cliente MCP (ex.: Claude) ao servidor da demo → perguntar "por que
   buscar requisito), tool de escrita com confirmação/step-up (abrir plano), e ações PROIBIDAS sempre
   negadas (aceitar risco, marcar não aplicável, revelar identidade, exportar em massa). MCP
   DESLIGADO por padrão; toda chamada na trilha; pseudonimizado. 5 testes (R12). (2026-10-10)
-- [ ] 14. Roteiros R1 a R12 automatizados como testes de ponta a ponta
+- [x] **14. Roteiros R1 a R12 automatizados como testes de ponta a ponta** — `RoteirosE2ETest`:
+  os 12 roteiros da seção 5 rodam de ponta a ponta + os critérios de pronto (trilha imutável detecta
+  adulteração; risco residual derivado e explicável; permissões do core não ampliadas pela origem;
+  MCP não executa ação proibida). 13 testes. (2026-10-10)
+
+**DEMO COMPLETA:** 14/14 módulos. 73 testes (BUILD SUCCESS), nenhum dado real, todos os roteiros
+R1–R12 verdes. Falta só o frontend Angular/PrimeNG (DS Senior) e o provisionamento
+(Neon + Vercel/frontend + deploy VPS/backend).

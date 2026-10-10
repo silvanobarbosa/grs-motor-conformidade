@@ -127,7 +127,9 @@ Conectar um cliente MCP (ex.: Claude) ao servidor da demo → perguntar "por que
   encadeado, porta de entrada com contrato único. Backend Spring Boot 3 / Java 17 / Maven.
   10 testes (imutabilidade, encadeamento, detecção de adulteração, isolamento por tenant, contrato
   único, recusa de CPF). (2026-10-10)
-- [ ] 2. Cadastro canônico e cofre de identidade
+- [x] **2. Cadastro canônico e cofre de identidade** — `Pessoa` no cofre (CPF só como hash, nunca
+  em claro; pseudônimo estável derivado do hash). Resolução de entidades por CPF→pseudônimo.
+  Eliminação LGPD quebra a identidade mantendo a trilha íntegra. 4 testes. (2026-10-10)
 - [ ] 3. Mocks de RH, acesso e terceiros + simulador de tempo + dados do cliente fictício
 - [ ] 4. Catálogo regulatório versionado e aplicabilidade
 - [ ] 5. Motor de avaliação (`RuleEnginePort`), cenários, travas e explicação

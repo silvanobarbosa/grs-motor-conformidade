@@ -141,7 +141,12 @@ Conectar um cliente MCP (ex.: Claude) ao servidor da demo → perguntar "por que
   versões); conteúdo de demonstração "não validado". Aplicabilidade: regras globais cargo→norma
   (obrigatório / requer confirmação / não aplicável), confirmação por tenant com justificativa
   obrigatória e responsável técnico p/ alta criticidade; na dúvida, requer confirmação. 5 testes. (2026-10-10)
-- [ ] 5. Motor de avaliação (`RuleEnginePort`), cenários, travas e explicação
+- [x] **5. Motor de avaliação (`RuleEnginePort`), cenários, travas e explicação** — avaliador
+  simples atrás do `RuleEnginePort` (trocável pelo motor da Senior); cenários declarativos
+  (biblioteca inicial: crachá ativo de desligado=CRÍTICO, treinamento vencido=ALTO, vencendo em
+  15d=MÉDIO, doc terceiro vencido=ALTO); risco residual DERIVADO (nunca editado), upsert por sujeito;
+  travas de confiança (baixa não vai a CRÍTICO), oscilação (evento só na mudança) e explicação
+  (evidência/fonte/regra na trilha). 5 testes (R2/R4/R7). (2026-10-10)
 - [ ] 6. Ações e donos (mock do gestor de ocorrências)
 - [ ] 7. Governança (mocks de GED, Sign, BPM) e trilha de auditoria
 - [ ] 8. Permissões (papel + escopo + categoria, precedência, segregação)

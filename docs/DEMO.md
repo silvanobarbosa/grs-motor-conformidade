@@ -173,6 +173,9 @@ Conectar um cliente MCP (ex.: Claude) ao servidor da demo → perguntar "por que
   documento e versão do motor; campo duvidoso → baixa confiança → não conferida). Cenário
   `DOC_TERCEIRO_NAO_CONFERIDO` (não reduz risco até conferência). `ConferenciaService` lista
   pendentes e confere → recalcula o risco. 2 testes (R4). (2026-10-10)
-- [ ] 12. Sara mock (triagem e explicação)
+- [x] **12. Sara mock (triagem e explicação)** — `MockSaraAdapter` (extração determinística de
+  local/data/pessoas; explicação que reescreve a base; confiança + modelo/prompt). `SaraService`:
+  IA NUNCA decide (só sugere/extrai/explica, não altera risco), funciona DESLIGADA (flag por tenant),
+  toda saída registra modelo/prompt/confiança na trilha. 3 testes (R11). (2026-10-10)
 - [ ] 13. Servidor MCP
 - [ ] 14. Roteiros R1 a R12 automatizados como testes de ponta a ponta

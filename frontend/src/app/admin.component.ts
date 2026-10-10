@@ -1,11 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { InputTextModule } from 'primeng/inputtext';
+import { marked } from 'marked';
 import { GrcApi } from './grc-api.service';
 
 @Component({
@@ -80,6 +82,13 @@ import { GrcApi } from './grc-api.service';
             </ng-template>
           </p-table>
         </p-card>
+
+        <!-- DOCUMENTACAO -->
+        <h2>Documentacao do sistema</h2>
+        <p-card>
+          <button *ngIf="!docHtml()" pButton label="Abrir documentacao" icon="pi pi-book" (click)="carregarDoc()" [loading]="docCarregando()"></button>
+          <div *ngIf="docHtml() as h" class="doc" [innerHTML]="h"></div>
+        </p-card>
       </div>
     </main>
   `,
@@ -103,6 +112,16 @@ import { GrcApi } from './grc-api.service';
     .mini { width:100%; font-size:.85rem; } .mini td{ padding:4px 0; border-top:1px solid var(--color-cinza-300,#D4D4D4);} .mini .r{ text-align:right; color:var(--color-cinza-600,#77736E);}
     .novo { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
     .novo input { flex:1; min-width:140px; }
+    .doc { font-size:.9rem; line-height:1.6; color:var(--color-cinza-900,#3B3D3D); max-width:80ch; }
+    .doc h1,.doc h2,.doc h3 { color:var(--color-green-escuro); margin:18px 0 8px; }
+    .doc h1 { font-size:1.5rem; } .doc h2 { font-size:1.2rem; } .doc h3 { font-size:1.02rem; }
+    .doc table { border-collapse:collapse; width:100%; margin:10px 0; display:block; overflow-x:auto; }
+    .doc th,.doc td { border:1px solid var(--color-cinza-300,#D4D4D4); padding:6px 10px; text-align:left; font-size:.85rem; }
+    .doc th { background:#f0fbfa; }
+    .doc code { background:var(--color-cinza-100,#F2F2F2); padding:1px 5px; border-radius:4px; font-size:.85em; }
+    .doc pre { background:#f0fbfa; border:1px solid var(--color-green-claro,#2AC4AA); border-radius:8px; padding:12px; overflow-x:auto; }
+    .doc pre code { background:none; padding:0; }
+    .doc a { color:var(--color-green-institucional); }
     @media (max-width:900px){ .grc-grid2{ grid-template-columns:1fr; } }
   `],
 })
@@ -118,8 +137,18 @@ export class AdminComponent {
   usuarios = signal<any[]>([]);
   erroUsuario = signal('');
   nLogin = ''; nNome = ''; nSenha = ''; nPapeis = '';
+  docHtml = signal<string | null>(null);
+  docCarregando = signal(false);
 
-  constructor(private api: GrcApi) {}
+  constructor(private api: GrcApi, private http: HttpClient) {}
+
+  carregarDoc(): void {
+    this.docCarregando.set(true);
+    this.http.get('DOCUMENTACAO.md', { responseType: 'text' }).subscribe({
+      next: (md) => { this.docHtml.set(marked.parse(md) as string); this.docCarregando.set(false); },
+      error: () => { this.docHtml.set('<p>Documentacao indisponivel.</p>'); this.docCarregando.set(false); },
+    });
+  }
 
   cor(nivel: string): 'success' | 'info' | 'warning' | 'danger' | 'secondary' {
     switch (nivel) { case 'CRITICO': return 'danger'; case 'ALTO': return 'warning'; case 'MEDIO': return 'info'; case 'BAIXO': return 'secondary'; default: return 'success'; }

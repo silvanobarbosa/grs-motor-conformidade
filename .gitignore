@@ -18,3 +18,6 @@ frontend/.angular/
 *.iml
 .DS_Store
 Thumbs.db
+
+# doc gerada no build (fonte: ../DOCUMENTACAO.md)
+frontend/public/DOCUMENTACAO.md

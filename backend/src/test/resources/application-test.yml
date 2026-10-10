@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    # H2 em memoria (sem Docker). Nos testes o schema vem do Hibernate (create-drop); o Flyway e a
+    # migracao SQL sao exercitados em producao, contra o Postgres (Neon).
+    url: jdbc:h2:mem:motorgrc;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.H2Dialect
+  flyway:
+    enabled: false

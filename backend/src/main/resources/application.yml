@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: motor-grc
+  datasource:
+    # Producao/dev: Postgres (Neon). Definir por ambiente, nunca no codigo (segredo so em env).
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/motor_grc}
+    username: ${SPRING_DATASOURCE_USERNAME:motor_grc}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: validate   # o schema e do Flyway; o JPA so valida
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+server:
+  port: ${PORT:8080}

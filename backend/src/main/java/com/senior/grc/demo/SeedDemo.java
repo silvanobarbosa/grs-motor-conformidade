@@ -1,5 +1,7 @@
 package com.senior.grc.demo;
 
+import com.senior.grc.catalogo.AplicabilidadeService;
+import com.senior.grc.catalogo.CatalogoService;
 import com.senior.grc.mocks.MockAcessoAdapter;
 import com.senior.grc.mocks.MockRhAdapter;
 import com.senior.grc.mocks.MockTerceirosAdapter;
@@ -27,12 +29,17 @@ public class SeedDemo {
     private final MockAcessoAdapter acesso;
     private final MockTerceirosAdapter terceiros;
     private final RelogioDemo relogio;
+    private final CatalogoService catalogo;
+    private final AplicabilidadeService aplicabilidade;
 
-    public SeedDemo(MockRhAdapter rh, MockAcessoAdapter acesso, MockTerceirosAdapter terceiros, RelogioDemo relogio) {
+    public SeedDemo(MockRhAdapter rh, MockAcessoAdapter acesso, MockTerceirosAdapter terceiros, RelogioDemo relogio,
+                    CatalogoService catalogo, AplicabilidadeService aplicabilidade) {
         this.rh = rh;
         this.acesso = acesso;
         this.terceiros = terceiros;
         this.relogio = relogio;
+        this.catalogo = catalogo;
+        this.aplicabilidade = aplicabilidade;
     }
 
     private record Perfil(String cargo, List<String> normas) {
@@ -55,6 +62,10 @@ public class SeedDemo {
     /** Semeia o cliente ficticio. {@code colaboradores} controla o volume (demo ~120). */
     @Transactional
     public Resumo semear(int colaboradores) {
+        // Catalogo global e regras de aplicabilidade (idempotente).
+        catalogo.semearGlobal();
+        aplicabilidade.semearGlobalRegras();
+
         Instant base = relogio.agora();
         int pessoas = 0;
         for (int i = 0; i < colaboradores; i++) {

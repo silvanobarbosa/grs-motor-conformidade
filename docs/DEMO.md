@@ -136,7 +136,11 @@ Conectar um cliente MCP (ex.: Claude) ao servidor da demo → perguntar "por que
   colaboradores por cargo/planta, treinamentos com vencimentos, crachás, 4 terceiras + doc vencido),
   admin da demo (`/api/demo/*`). Read-model de evidência (`EvidenciaRegistro`) com tipo+atributos
   estruturados para o motor de risco. 5 testes. (2026-10-10)
-- [ ] 4. Catálogo regulatório versionado e aplicabilidade
+- [x] **4. Catálogo regulatório versionado e aplicabilidade** — catálogo GLOBAL (NR-1/6/10/33/35
+  + 2 políticas), requisitos no nível do item com versão/vigência e consulta por data (NR-35 com 2
+  versões); conteúdo de demonstração "não validado". Aplicabilidade: regras globais cargo→norma
+  (obrigatório / requer confirmação / não aplicável), confirmação por tenant com justificativa
+  obrigatória e responsável técnico p/ alta criticidade; na dúvida, requer confirmação. 5 testes. (2026-10-10)
 - [ ] 5. Motor de avaliação (`RuleEnginePort`), cenários, travas e explicação
 - [ ] 6. Ações e donos (mock do gestor de ocorrências)
 - [ ] 7. Governança (mocks de GED, Sign, BPM) e trilha de auditoria

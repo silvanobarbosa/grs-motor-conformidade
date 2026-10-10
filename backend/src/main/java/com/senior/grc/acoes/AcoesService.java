@@ -100,4 +100,26 @@ public class AcoesService {
     public List<PlanoDeAcao> painel() {
         return planos.findByTenantId(TenantContext.obrigatorio());
     }
+
+    /**
+     * Abertura MANUAL de plano (ex.: via MCP, com confirmacao). Respeita "um por risco+causa": se ja
+     * ha um aberto, reaproveita. Dono por regra. Devolve o plano aberto/existente.
+     */
+    @Transactional
+    public PlanoDeAcao abrirPlanoManual(String sujeitoId, com.senior.grc.risco.Cenario.Escopo escopo,
+                                        String causa, String descricao) {
+        String tenant = TenantContext.obrigatorio();
+        var existente = planos.findByTenantIdAndSujeitoIdAndCausaAndStatus(tenant, sujeitoId, causa, PlanoDeAcao.Status.ABERTO);
+        if (existente.isPresent()) {
+            return existente.get();
+        }
+        AtribuicaoService.Dono dono = atribuicao.donoDe(escopo, sujeitoId);
+        PlanoDeAcao plano = new PlanoDeAcao(UUID.randomUUID(), tenant, PlanoDeAcao.Tipo.ACAO_TRATAMENTO,
+                sujeitoId, escopo, causa, dono.cargo(), dono.local(), dono.semDono(), descricao, relogio.agora());
+        planos.save(plano);
+        ocorrencias.abrirPlano(sujeitoId, escopo, causa, descricao);
+        trilha.registrar("PLANO_ABERTO_MANUAL",
+                "{\"sujeito\":\"" + sujeitoId + "\",\"causa\":\"" + causa + "\",\"dono\":\"" + dono.cargo() + "\"}");
+        return plano;
+    }
 }

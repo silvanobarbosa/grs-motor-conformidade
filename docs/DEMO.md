@@ -177,5 +177,9 @@ Conectar um cliente MCP (ex.: Claude) ao servidor da demo → perguntar "por que
   local/data/pessoas; explicação que reescreve a base; confiança + modelo/prompt). `SaraService`:
   IA NUNCA decide (só sugere/extrai/explica, não altera risco), funciona DESLIGADA (flag por tenant),
   toda saída registra modelo/prompt/confiança na trilha. 3 testes (R11). (2026-10-10)
-- [ ] 13. Servidor MCP
+- [x] **13. Servidor MCP** — `McpService` com a lógica e as guardas do servidor MCP (o transporte
+  JSON-RPC/OAuth 2.1 pluga por cima): resources, tools de leitura (consultar risco, pendências,
+  buscar requisito), tool de escrita com confirmação/step-up (abrir plano), e ações PROIBIDAS sempre
+  negadas (aceitar risco, marcar não aplicável, revelar identidade, exportar em massa). MCP
+  DESLIGADO por padrão; toda chamada na trilha; pseudonimizado. 5 testes (R12). (2026-10-10)
 - [ ] 14. Roteiros R1 a R12 automatizados como testes de ponta a ponta

@@ -11,6 +11,32 @@ frontend Angular/PrimeNG (a entrar), Postgres/Neon, servidor MCP (a entrar).
 
 ---
 
+## 2026-10-10 — Publicado: frontend (Vercel) + backend (VPS) + Neon
+
+**No ar, público:**
+- **Frontend:** https://grc.reverblabs.com.br — Angular 18 + PrimeNG, Design System Senior (Public
+  Sans, verde institucional via tokens). Dashboard com cobertura/apetite/pendências/planos, risco
+  residual por sujeito, risco por unidade, pendências operacionais e selo de integridade da trilha.
+  Vercel (projeto `grc-motor-conformidade`, rootDirectory `frontend`, outputDirectory
+  `dist/grc-frontend/browser`).
+- **Backend:** https://grc-api.reverblabs.com.br — Spring Boot (jar) na VPS Contabo (systemd `grc`,
+  porta 8097), atrás do Caddy dockerizado da casa (bloco `reverse_proxy 172.18.0.1:8097` + regra ufw
+  liberando a 8097 ao subnet docker). CORS liberado para `*.reverblabs.com.br` e `*.vercel.app`.
+- **Banco:** Neon `grs-motor-conformidade-eu` (aws-eu-central-1) — perto do VPS (Europa). As 8
+  migrações Flyway aplicadas; seedado (120 colaboradores + 4 terceiras, 124 sujeitos avaliados).
+
+**Armadilha (custou tempo):** Neon em `sa-east-1` com VPS na Europa deixou o seed inviável (~8s por
+colaborador, por round-trip SSL SP↔EU). Movido para `aws-eu-central-1` → seed de 120 em ~24s. O
+projeto SP foi descartado.
+
+**Outras armadilhas:** (1) o Vercel preset Angular servia `dist/grc-frontend` (sem `/browser`) →
+404; fix = `outputDirectory=dist/grc-frontend/browser` nas settings do projeto. (2) `.vercel.app`
+fica atrás do SSO da casa → usar domínio custom (bypassa). (3) ufw bloqueia o subnet docker→host; a
+porta do backend precisa de `ufw allow from 172.18.0.0/16 to any port 8097`.
+
+**Pendente:** transporte MCP oficial (JSON-RPC/OAuth) por cima do `McpService`; mais telas no
+frontend (governança, dossiê, conferência, MCP); registrar na frota/monitor se o dono quiser.
+
 ## 2026-10-10 — Backlog completo: módulos 2–14 (demo funcional de ponta a ponta)
 
 **Entregue:** o backend da demo COMPLETO, os 14 módulos do backlog (`docs/DEMO.md`), com **73 testes

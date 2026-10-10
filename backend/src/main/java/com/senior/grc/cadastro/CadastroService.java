@@ -98,4 +98,12 @@ public class CadastroService {
     public boolean existeAtivoComCargo(String cargo) {
         return repo.existsByTenantIdAndCargoCodigoAndEliminadaFalse(TenantContext.obrigatorio(), cargo);
     }
+
+    @Transactional(readOnly = true)
+    public List<Pessoa> ativosPorCargoLocal(String cargo, String local) {
+        String tenant = TenantContext.obrigatorio();
+        return local == null
+                ? repo.findByTenantIdAndCargoCodigoAndEliminadaFalse(tenant, cargo)
+                : repo.findByTenantIdAndCargoCodigoAndLocalCodigoAndEliminadaFalse(tenant, cargo, local);
+    }
 }

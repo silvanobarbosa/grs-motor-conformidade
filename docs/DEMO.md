@@ -152,7 +152,10 @@ Conectar um cliente MCP (ex.: Claude) ao servidor da demo → perguntar "por que
   (cargo+local; fallback no gestor de riscos marcado sem dono → reatribuição automática); mock do
   gestor de ocorrências; ciclo fechado (concluir → evidência ACAO_CONCLUIDA → reavaliação). 4 testes
   (R3, R7). (2026-10-10)
-- [ ] 7. Governança (mocks de GED, Sign, BPM) e trilha de auditoria
+- [x] **7. Governança (mocks de GED, Sign, BPM) e trilha de auditoria** — política (rascunho →
+  aprovação BPM → publicação versionada via GED com hash), ciência por cargo+local (Sign) com painel
+  de pendências (R6), decisões BPM (aprovar política, aceitar risco). Aceitar risco = exceção humana
+  (justificativa obrigatória) que trava a abertura de plano. Mocks GedPort/SignPort/BpmPort. 4 testes. (2026-10-10)
 - [ ] 8. Permissões (papel + escopo + categoria, precedência, segregação)
 - [ ] 9. Indicadores e dashboards
 - [ ] 10. Acesso externo e dossiê

@@ -17,4 +17,8 @@ public interface PessoaRepository extends JpaRepository<Pessoa, UUID> {
     boolean existsByTenantIdAndCargoCodigoAndLocalCodigoAndEliminadaFalse(String tenantId, String cargoCodigo, String localCodigo);
 
     boolean existsByTenantIdAndCargoCodigoAndEliminadaFalse(String tenantId, String cargoCodigo);
+
+    List<Pessoa> findByTenantIdAndCargoCodigoAndEliminadaFalse(String tenantId, String cargoCodigo);
+
+    List<Pessoa> findByTenantIdAndCargoCodigoAndLocalCodigoAndEliminadaFalse(String tenantId, String cargoCodigo, String localCodigo);
 }

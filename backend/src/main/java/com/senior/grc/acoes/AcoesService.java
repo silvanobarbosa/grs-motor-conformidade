@@ -3,6 +3,7 @@ package com.senior.grc.acoes;
 import com.senior.grc.demo.Relogio;
 import com.senior.grc.fundacao.tenant.TenantContext;
 import com.senior.grc.fundacao.trilha.TrilhaService;
+import com.senior.grc.governanca.GovernancaService;
 import com.senior.grc.mocks.OcorrenciasPort;
 import com.senior.grc.risco.Cenario;
 import com.senior.grc.risco.NivelRisco;
@@ -31,15 +32,17 @@ public class AcoesService {
     private final RiscoService risco;
     private final TrilhaService trilha;
     private final Relogio relogio;
+    private final GovernancaService governanca;
 
     public AcoesService(PlanoDeAcaoRepository planos, AtribuicaoService atribuicao, OcorrenciasPort ocorrencias,
-                        RiscoService risco, TrilhaService trilha, Relogio relogio) {
+                        RiscoService risco, TrilhaService trilha, Relogio relogio, GovernancaService governanca) {
         this.planos = planos;
         this.atribuicao = atribuicao;
         this.ocorrencias = ocorrencias;
         this.risco = risco;
         this.trilha = trilha;
         this.relogio = relogio;
+        this.governanca = governanca;
     }
 
     private static boolean acionavel(NivelRisco nivel) {
@@ -51,6 +54,9 @@ public class AcoesService {
     public void aoMudarRisco(RiscoMudou e) {
         if (!acionavel(e.para())) {
             return; // risco baixou/desapareceu: nao abre plano novo (fechamento e manual)
+        }
+        if (governanca.riscoAceito(e.tenantId(), e.sujeitoId(), e.cenarioDominante())) {
+            return; // excecao humana: risco aceito com justificativa -> nao abre plano
         }
         String causa = e.cenarioDominante();
         var existente = planos.findByTenantIdAndSujeitoIdAndCausaAndStatus(

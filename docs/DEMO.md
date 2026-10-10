@@ -156,7 +156,11 @@ Conectar um cliente MCP (ex.: Claude) ao servidor da demo → perguntar "por que
   aprovação BPM → publicação versionada via GED com hash), ciência por cargo+local (Sign) com painel
   de pendências (R6), decisões BPM (aprovar política, aceitar risco). Aceitar risco = exceção humana
   (justificativa obrigatória) que trava a abertura de plano. Mocks GedPort/SignPort/BpmPort. 4 testes. (2026-10-10)
-- [ ] 8. Permissões (papel + escopo + categoria, precedência, segregação)
+- [x] **8. Permissões (papel + escopo + categoria, precedência, segregação)** — `PermissaoService`:
+  escopo por papel+local (gestor de planta só vê seu local), categoria SENSÍVEL (saúde) classificada
+  por evidência, precedência (core é base; herança da origem SÓ restringe — origem nega → não vê),
+  falha segura (sem sincronização → sensível bloqueada), segregação de funções (ninguém aprova a
+  própria decisão). Processar ≠ exibir. 6 testes. (2026-10-10)
 - [ ] 9. Indicadores e dashboards
 - [ ] 10. Acesso externo e dossiê
 - [ ] 11. OCR mock e conferência

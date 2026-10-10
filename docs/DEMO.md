@@ -165,7 +165,10 @@ Conectar um cliente MCP (ex.: Claude) ao servidor da demo → perguntar "por que
   operacional (vencimentos nos próximos 15 dias, com drill-down às evidências), gestão (residual por
   unidade e nível), executivo (residual vs apetite), atualidade (último envio por fonte) e cobertura
   (% requisitos obrigatórios aplicáveis com evidência válida). 4 testes (R8). (2026-10-10)
-- [ ] 10. Acesso externo e dossiê
+- [x] **10. Acesso externo e dossiê** — `AcessoExterno` concedido pelo key user, com escopo,
+  temporário (expira), só leitura e auditado (trilha). `DossieService.gerar` exige acesso válido,
+  é PSEUDONIMIZADO por padrão (nunca CPF) e carrega a verificação de integridade da trilha + hash do
+  dossiê. 3 testes (R9). (2026-10-10)
 - [ ] 11. OCR mock e conferência
 - [ ] 12. Sara mock (triagem e explicação)
 - [ ] 13. Servidor MCP

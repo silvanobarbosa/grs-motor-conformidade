@@ -11,6 +11,22 @@ frontend Angular/PrimeNG (a entrar), Postgres/Neon, servidor MCP (a entrar).
 
 ---
 
+## 2026-10-10 — Telas extras (conformidade, conferência, auditoria, MCP)
+
+**Entregue (no ar):** 4 telas novas no frontend + os controllers REST que faltavam no backend.
+- **/conformidade:** catálogo com consulta por data, aplicabilidade por cargo+local, políticas
+  (criar/publicar/pendências de ciência). Controller `CatalogoController`.
+- **/conferencia:** simular OCR de documento duvidoso → conferir; demonstra que baixa confiança não
+  reduz risco até a conferência. `ConferenciaController` + `/api/demo/ocr-terceiro`.
+- **/auditoria:** conceder acesso externo + gerar dossiê pseudonimizado com prova de integridade e
+  hash. `ExternoController`.
+- **/mcp:** console do servidor MCP — ligar/desligar, tools de leitura, escrita com confirmação
+  (step-up) e ação proibida negada. `McpController`.
+
+**Pendente:** transporte MCP oficial (JSON-RPC/OAuth) sobre o `McpService` — o console REST já
+demonstra o contrato e as guardas; o transporte formal fica para quando houver um cliente MCP real
+para testar contra.
+
 ## 2026-10-10 — Landing + admin master/observabilidade + documentação
 
 **Entregue (no ar):**

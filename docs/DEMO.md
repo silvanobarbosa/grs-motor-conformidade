@@ -161,7 +161,10 @@ Conectar um cliente MCP (ex.: Claude) ao servidor da demo → perguntar "por que
   por evidência, precedência (core é base; herança da origem SÓ restringe — origem nega → não vê),
   falha segura (sem sincronização → sensível bloqueada), segregação de funções (ninguém aprova a
   própria decisão). Processar ≠ exibir. 6 testes. (2026-10-10)
-- [ ] 9. Indicadores e dashboards
+- [x] **9. Indicadores e dashboards** — `IndicadoresService` (saída agregada, API aberta p/ BI):
+  operacional (vencimentos nos próximos 15 dias, com drill-down às evidências), gestão (residual por
+  unidade e nível), executivo (residual vs apetite), atualidade (último envio por fonte) e cobertura
+  (% requisitos obrigatórios aplicáveis com evidência válida). 4 testes (R8). (2026-10-10)
 - [ ] 10. Acesso externo e dossiê
 - [ ] 11. OCR mock e conferência
 - [ ] 12. Sara mock (triagem e explicação)

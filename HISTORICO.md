@@ -11,6 +11,25 @@ frontend Angular/PrimeNG (a entrar), Postgres/Neon, servidor MCP (a entrar).
 
 ---
 
+## 2026-10-10 — Landing + admin master/observabilidade + documentação
+
+**Entregue (no ar):**
+- **Landing** (`/` em grc.reverblabs.com.br): o que o sistema faz, como funciona (infográfico de
+  fluxo fontes→porta→core→saídas) e os princípios inegociáveis. Roteamento hash: `/painel` = demo,
+  `/admin` = administração.
+- **Admin master + observabilidade** (módulo `admin` no backend; tela `/admin`): `UsuarioSistema`
+  (senha hash+sal), admin master semeado no boot (`admin.master` / `AdminMaster@2026`), auth por
+  token, CRUD de usuários (só admin master cria/ativa), e **observabilidade do sistema** (eventos +
+  integridade da trilha, evidências, pessoas, usuários, planos, cobertura, risco por nível,
+  atualidade por fonte, flags IA/MCP). 78 testes (5 do admin).
+- **Documentação detalhada**: `DOCUMENTACAO.md` (visão, arquitetura, módulos, API, admin, roteiros,
+  deploy, gotchas, pendências).
+
+**Decisões que ficam valendo:**
+- Usuário do SISTEMA (operador) ≠ PESSOA do cliente (colaborador). O admin cadastro faz o papel da
+  License na demo; em produção vem da License/SSO Senior.
+- Frontend usa **hash location** (evita 404 em refresh de rota no hosting estático).
+
 ## 2026-10-10 — Publicado: frontend (Vercel) + backend (VPS) + Neon
 
 **No ar, público:**

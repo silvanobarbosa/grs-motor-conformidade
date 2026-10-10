@@ -82,4 +82,41 @@ export class GrcApi {
   adminObservabilidade(token: string): Observable<any> {
     return this.http.get(`${this.base}/api/admin/observabilidade`, { headers: this.adminHeaders(token) });
   }
+
+  // --- Catalogo / aplicabilidade ---
+  normas(): Observable<any[]> { return this.http.get<any[]>(`${this.base}/api/catalogo/normas`, { headers: this.headers }); }
+  requisito(norma: string, item: string, data?: string): Observable<any> {
+    const q = `norma=${encodeURIComponent(norma)}&item=${encodeURIComponent(item)}${data ? '&data=' + encodeURIComponent(data) : ''}`;
+    return this.http.get(`${this.base}/api/catalogo/requisito?${q}`, { headers: this.headers });
+  }
+  sugerir(cargo: string, local: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.base}/api/catalogo/aplicabilidade?cargo=${cargo}&local=${local}`, { headers: this.headers });
+  }
+
+  // --- Governanca ---
+  politicas(): Observable<any[]> { return this.http.get<any[]>(`${this.base}/api/governanca/politicas`, { headers: this.headers }); }
+  criarPolitica(b: any): Observable<any> { return this.http.post(`${this.base}/api/governanca/politicas`, b, { headers: this.headers }); }
+  publicarPolitica(cod: string): Observable<any> { return this.http.post(`${this.base}/api/governanca/politicas/${cod}/publicar`, { por: 'key-user' }, { headers: this.headers }); }
+  darCiencia(cod: string, pseudonimo: string): Observable<any> { return this.http.post(`${this.base}/api/governanca/politicas/${cod}/ciencia`, { pseudonimo }, { headers: this.headers }); }
+  pendenciasCiencia(cod: string): Observable<string[]> { return this.http.get<string[]>(`${this.base}/api/governanca/politicas/${cod}/pendencias`, { headers: this.headers }); }
+
+  // --- Conferencia / OCR ---
+  ocrTerceiro(empresa: string, documento: string, dias: number, duvidoso: boolean): Observable<any> {
+    return this.http.post(`${this.base}/api/demo/ocr-terceiro?empresa=${empresa}&documento=${documento}&dias=${dias}&duvidoso=${duvidoso}`, {}, { headers: this.headers });
+  }
+  conferenciaPendentes(): Observable<any[]> { return this.http.get<any[]>(`${this.base}/api/conferencia/pendentes`, { headers: this.headers }); }
+  conferir(id: string): Observable<any> { return this.http.post(`${this.base}/api/conferencia/${id}/conferir`, {}, { headers: this.headers }); }
+
+  // --- Externo / dossie ---
+  concederAcesso(b: any): Observable<any> { return this.http.post(`${this.base}/api/externo/acessos`, b, { headers: this.headers }); }
+  gerarDossie(auditor: string, norma: string): Observable<any> { return this.http.post(`${this.base}/api/externo/dossie`, { auditor, norma }, { headers: this.headers }); }
+
+  // --- MCP ---
+  mcpEstado(): Observable<any> { return this.http.get(`${this.base}/api/mcp/estado`, { headers: this.headers }); }
+  mcpLigar(): Observable<any> { return this.http.post(`${this.base}/api/mcp/ligar`, {}, { headers: this.headers }); }
+  mcpDesligar(): Observable<any> { return this.http.post(`${this.base}/api/mcp/desligar`, {}, { headers: this.headers }); }
+  mcpConsultarRisco(sujeito: string): Observable<any> { return this.http.post(`${this.base}/api/mcp/consultar-risco`, { sujeito }, { headers: this.headers }); }
+  mcpBuscarRequisito(norma: string, item: string): Observable<any> { return this.http.post(`${this.base}/api/mcp/buscar-requisito`, { norma, item }, { headers: this.headers }); }
+  mcpAbrirPlano(sujeito: string, causa: string, confirmado: boolean): Observable<any> { return this.http.post(`${this.base}/api/mcp/abrir-plano`, { sujeito, causa, confirmado }, { headers: this.headers }); }
+  mcpAceitarRisco(): Observable<any> { return this.http.post(`${this.base}/api/mcp/aceitar-risco`, {}, { headers: this.headers }); }
 }

@@ -12,7 +12,11 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
         <nav class="grc-nav">
           <a routerLink="/" routerLinkActive="on" [routerLinkActiveOptions]="{exact:true}">Visao geral</a>
           <a routerLink="/painel" routerLinkActive="on">Demonstracao</a>
-          <a routerLink="/admin" routerLinkActive="on">Administracao</a>
+          <a routerLink="/conformidade" routerLinkActive="on">Conformidade</a>
+          <a routerLink="/conferencia" routerLinkActive="on">Conferencia</a>
+          <a routerLink="/auditoria" routerLinkActive="on">Auditoria</a>
+          <a routerLink="/mcp" routerLinkActive="on">MCP</a>
+          <a routerLink="/admin" routerLinkActive="on">Admin</a>
         </nav>
       </div>
     </header>
@@ -20,9 +24,9 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
   `,
   styles: [`
     .grc-header { background: var(--color-green-institucional); color:#fff; }
-    .grc-header-inner { max-width:1140px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; gap:24px; }
+    .grc-header-inner { max-width:1140px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
     .grc-logo { font-weight:800; font-size:1.25rem; color:#fff; text-decoration:none; letter-spacing:.3px; }
-    .grc-nav { display:flex; gap:18px; }
+    .grc-nav { display:flex; gap:16px; flex-wrap:wrap; }
     .grc-nav a { color:#fff; opacity:.85; text-decoration:none; font-size:.92rem; font-weight:600; padding:4px 0; border-bottom:2px solid transparent; }
     .grc-nav a.on { opacity:1; border-bottom-color:var(--color-verde-neon,#12F7D1); }
     .grc-nav a:hover { opacity:1; }

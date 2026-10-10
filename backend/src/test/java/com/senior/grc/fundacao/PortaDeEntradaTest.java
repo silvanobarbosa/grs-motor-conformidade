@@ -40,11 +40,13 @@ class PortaDeEntradaTest {
     @AfterEach
     void limpa() {
         TenantContext.limpar();
+        jdbc.update("DELETE FROM evidencia_registro");
         jdbc.update("DELETE FROM trilha_evento");
     }
 
     private Evidencia valida() {
-        return new Evidencia("P-123", "treinamento NR-35 valido ate 2026-11-30", "RH",
+        return new Evidencia("P-123", "TREINAMENTO", java.util.Map.of("norma", "NR-35"),
+                "treinamento NR-35 valido ate 2026-11-30", "RH",
                 ConfiancaFonte.ALTA, Instant.parse("2026-10-10T12:00:00Z"),
                 Instant.parse("2026-11-30T00:00:00Z"), null);
     }
@@ -64,14 +66,14 @@ class PortaDeEntradaTest {
     @Test
     void recusa_evidencia_sem_fato() {
         TenantContext.definir("t1");
-        Evidencia semFato = new Evidencia("P-1", "  ", "RH", ConfiancaFonte.MEDIA, Instant.now(), null, null);
+        Evidencia semFato = new Evidencia("P-1", "TREINAMENTO", null, "  ", "RH", ConfiancaFonte.MEDIA, Instant.now(), null, null);
         assertThrows(EvidenciaInvalidaException.class, () -> porta.receber(semFato));
     }
 
     @Test
     void recusa_cpf_no_pseudonimo() {
         TenantContext.definir("t1");
-        Evidencia comCpf = new Evidencia("123.456.789-00", "fato qualquer", "RH",
+        Evidencia comCpf = new Evidencia("123.456.789-00", "TESTE", null, "fato qualquer", "RH",
                 ConfiancaFonte.ALTA, Instant.now(), null, null);
         assertThrows(EvidenciaInvalidaException.class, () -> porta.receber(comCpf));
     }
@@ -79,7 +81,7 @@ class PortaDeEntradaTest {
     @Test
     void recusa_cpf_no_fato() {
         TenantContext.definir("t1");
-        Evidencia comCpf = new Evidencia("P-1", "pessoa 12345678900 sem treinamento", "RH",
+        Evidencia comCpf = new Evidencia("P-1", "TESTE", null, "pessoa 12345678900 sem treinamento", "RH",
                 ConfiancaFonte.ALTA, Instant.now(), null, null);
         assertThrows(EvidenciaInvalidaException.class, () -> porta.receber(comCpf));
     }

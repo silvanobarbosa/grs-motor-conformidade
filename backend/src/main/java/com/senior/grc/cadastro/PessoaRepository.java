@@ -13,4 +13,8 @@ public interface PessoaRepository extends JpaRepository<Pessoa, UUID> {
     Optional<Pessoa> findByTenantIdAndPseudonimo(String tenantId, String pseudonimo);
 
     List<Pessoa> findByTenantId(String tenantId);
+
+    boolean existsByTenantIdAndCargoCodigoAndLocalCodigoAndEliminadaFalse(String tenantId, String cargoCodigo, String localCodigo);
+
+    boolean existsByTenantIdAndCargoCodigoAndEliminadaFalse(String tenantId, String cargoCodigo);
 }

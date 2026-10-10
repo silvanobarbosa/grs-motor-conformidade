@@ -88,4 +88,14 @@ public class CadastroService {
     public Optional<Pessoa> porPseudonimo(String pseudonimo) {
         return repo.findByTenantIdAndPseudonimo(TenantContext.obrigatorio(), pseudonimo);
     }
+
+    @Transactional(readOnly = true)
+    public boolean existeAtivoComCargoLocal(String cargo, String local) {
+        return repo.existsByTenantIdAndCargoCodigoAndLocalCodigoAndEliminadaFalse(TenantContext.obrigatorio(), cargo, local);
+    }
+
+    @Transactional(readOnly = true)
+    public boolean existeAtivoComCargo(String cargo) {
+        return repo.existsByTenantIdAndCargoCodigoAndEliminadaFalse(TenantContext.obrigatorio(), cargo);
+    }
 }

@@ -147,7 +147,11 @@ Conectar um cliente MCP (ex.: Claude) ao servidor da demo → perguntar "por que
   15d=MÉDIO, doc terceiro vencido=ALTO); risco residual DERIVADO (nunca editado), upsert por sujeito;
   travas de confiança (baixa não vai a CRÍTICO), oscilação (evento só na mudança) e explicação
   (evidência/fonte/regra na trilha). 5 testes (R2/R4/R7). (2026-10-10)
-- [ ] 6. Ações e donos (mock do gestor de ocorrências)
+- [x] **6. Ações e donos (mock do gestor de ocorrências)** — mudança de risco publica evento
+  (`RiscoMudou`); `AcoesService` abre UM plano por risco+causa (não duplica), dono por REGRA
+  (cargo+local; fallback no gestor de riscos marcado sem dono → reatribuição automática); mock do
+  gestor de ocorrências; ciclo fechado (concluir → evidência ACAO_CONCLUIDA → reavaliação). 4 testes
+  (R3, R7). (2026-10-10)
 - [ ] 7. Governança (mocks de GED, Sign, BPM) e trilha de auditoria
 - [ ] 8. Permissões (papel + escopo + categoria, precedência, segregação)
 - [ ] 9. Indicadores e dashboards

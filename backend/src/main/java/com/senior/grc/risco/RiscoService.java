@@ -7,6 +7,7 @@ import com.senior.grc.fundacao.evidencia.EvidenciaRegistro;
 import com.senior.grc.fundacao.evidencia.EvidenciaRepository;
 import com.senior.grc.fundacao.tenant.TenantContext;
 import com.senior.grc.fundacao.trilha.TrilhaService;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,9 +34,11 @@ public class RiscoService {
     private final RuleEnginePort motor;
     private final TrilhaService trilha;
     private final Relogio relogio;
+    private final ApplicationEventPublisher eventos;
 
     public RiscoService(EvidenciaRepository evidencias, AvaliacaoRiscoRepository avaliacoes, CadastroService cadastro,
-                        CenarioBiblioteca biblioteca, RuleEnginePort motor, TrilhaService trilha, Relogio relogio) {
+                        CenarioBiblioteca biblioteca, RuleEnginePort motor, TrilhaService trilha, Relogio relogio,
+                        ApplicationEventPublisher eventos) {
         this.evidencias = evidencias;
         this.avaliacoes = avaliacoes;
         this.cadastro = cadastro;
@@ -43,6 +46,7 @@ public class RiscoService {
         this.motor = motor;
         this.trilha = trilha;
         this.relogio = relogio;
+        this.eventos = eventos;
     }
 
     @Transactional
@@ -111,6 +115,7 @@ public class RiscoService {
             trilha.registrar("RISCO_AVALIADO",
                     "{\"sujeito\":\"" + sujeitoId + "\",\"de\":\"" + anterior + "\",\"para\":\"" + residual
                             + "\",\"cenario\":\"" + cenarioDominante + "\"}");
+            eventos.publishEvent(new RiscoMudou(tenant, sujeitoId, escopo, anterior, residual, cenarioDominante));
         }
         return atual;
     }

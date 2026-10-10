@@ -152,7 +152,7 @@ export class AppComponent implements OnInit {
 
   carregar(): void {
     this.carregando.set(true);
-    this.api.seed(120).subscribe({
+    this.api.seed(60).subscribe({
       next: () => this.api.reavaliar().subscribe(() => { this.carregando.set(false); this.atualizar(); }),
       error: () => this.carregando.set(false),
     });

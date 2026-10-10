@@ -14,4 +14,6 @@ public interface EvidenciaRepository extends JpaRepository<EvidenciaRegistro, UU
     List<EvidenciaRegistro> findByTenantIdAndSistemaOrigem(String tenantId, String sistemaOrigem);
 
     List<EvidenciaRegistro> findByTenantIdAndConferidaFalse(String tenantId);
+
+    long countByTenantId(String tenantId);
 }

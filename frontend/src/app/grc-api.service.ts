@@ -57,4 +57,29 @@ export class GrcApi {
   integridade(): Observable<any> {
     return this.http.get(`${this.base}/api/trilha/integridade`, { headers: this.headers });
   }
+
+  // --- Admin ---
+  private adminHeaders(token: string): HttpHeaders {
+    return new HttpHeaders({ 'X-Tenant-Id': this.tenant, 'X-Admin-Token': token });
+  }
+
+  adminLogin(login: string, senha: string): Observable<any> {
+    return this.http.post(`${this.base}/api/admin/login`, { login, senha }, { headers: this.headers });
+  }
+
+  adminUsuarios(token: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.base}/api/admin/usuarios`, { headers: this.adminHeaders(token) });
+  }
+
+  adminCriarUsuario(token: string, body: any): Observable<any> {
+    return this.http.post(`${this.base}/api/admin/usuarios`, body, { headers: this.adminHeaders(token) });
+  }
+
+  adminAtivo(token: string, id: string, ativo: boolean): Observable<any> {
+    return this.http.post(`${this.base}/api/admin/usuarios/${id}/ativo?ativo=${ativo}`, {}, { headers: this.adminHeaders(token) });
+  }
+
+  adminObservabilidade(token: string): Observable<any> {
+    return this.http.get(`${this.base}/api/admin/observabilidade`, { headers: this.adminHeaders(token) });
+  }
 }
